@@ -3,6 +3,7 @@
 *.lo
 *.la
 *.trs
+*.log
 .libs
 libtool
 ltmain.sh
