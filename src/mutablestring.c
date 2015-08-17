@@ -17,6 +17,8 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
+#include <stdio.h>
 #include <configure.h>
 #include <mutablestring.h>
 
@@ -52,9 +54,9 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 
 	if(ms->length >= ms->capacity) 
 	{
-		ms->capacity *= 2;
 		if(ms->buffer == NULL) 
 		{
+			ms->capacity *= 2;
 			ms->buffer = malloc(ms->capacity);
 			if(ms->buffer == NULL)
 				return;
@@ -190,8 +192,8 @@ void mutable_string_append_c(MutableString* ms, char s)
 	buf[0] = s;
 	buf[1] = '\0';
 
-	mutable_string_append_str_len(ms, buf, 1);
-
+	const char* ref = buf;
+	mutable_string_append_str_len(ms, ref, 1);
 }
 
 LIB_MUTABLE_STRING_API

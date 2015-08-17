@@ -68,8 +68,12 @@
 #endif
 
 /**
- * A MutableString object is a memory managed buffer whose buffer pointer
- * always contains a NULL byte at the end.
+ * A MutableString object is a memory managed byte string whose buffer pointer
+ * always contains a NULL byte at the end. While it is called string, it
+ * is actually a byte array storing the length in bytes. It's possible to use 
+ * it to store NULL bytes, and you'll still get a NULL byte at the end of it.
+ *
+ * To insert bytes use mutable_string_append_str_len
  */
 typedef struct MutableString {
 	/*@{*/
@@ -110,6 +114,14 @@ MutableString* mutable_string_new_len(size_t n);
 extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_new(const char* s);
 
+/**
+ * @brief Create a new string with the length supplied
+ *
+ * This function creates a new instance of MutableString
+ *
+ * @param s a pointer to a char* buffer
+ * @param len Total number of bytes to read from s
+ */
 extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_new_str_len(const char* s, size_t len);
 

@@ -8,6 +8,9 @@
 libtool
 ltmain.sh
 .deps
+test-driver
+tests/mutable_string_new_len
+src/configure.h
 Makefile
 Makefile.in
 config.guess

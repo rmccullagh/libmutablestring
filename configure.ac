@@ -22,7 +22,7 @@ AS_IF([test "x$enable_debug" = "xyes"], [
 
 
 if test -n "$GCC"; then
-  CFLAGS="$CFLAGS -Wall -Wextra -Werror"
+  CFLAGS="$CFLAGS -g -Wall -Wextra -Werror"
 fi
 
 AC_CONFIG_FILES([
