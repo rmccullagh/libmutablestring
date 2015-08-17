@@ -130,7 +130,7 @@ LIB_MUTABLE_STRING_API MutableString* mutable_string_new_len(size_t n)
 	if(n < LIB_MUTABLE_STRING_DEFAULT_SIZE)
 		n = LIB_MUTABLE_STRING_DEFAULT_SIZE;
 	
-	ms = mutable_string_sized_init(n + 1);
+	ms = mutable_string_sized_init(n);
 
 	mutable_string_buffer_init(ms);
 

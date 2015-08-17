@@ -15,7 +15,7 @@ static void test_mutable_string_new_len(void)
 	expect(ms != NULL);
 	expect(ms->length == 0);
 	expect(ms->buffer != NULL);
-	expect(ms->capacity == 5);
+	expect(ms->capacity == 4);
 	
 	free(ms->buffer);
 	free(ms);
