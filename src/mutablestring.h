@@ -94,7 +94,7 @@ extern "C" {
  * of n. The buffer will be allocated to the size of n + 1 where each
  * byte in buffer will be a NULL byte.
  *
- * @param n Number of bytes to allocate
+ * @param n Number of bytes to allocat
  * @return Pointer to a MutableString type, or NULL
  */
 extern LIB_MUTABLE_STRING_API
@@ -133,6 +133,23 @@ void mutable_string_append_c(MutableString* ms, char s);
 
 extern LIB_MUTABLE_STRING_API
 const char* mutable_string_lib_version(void);
+
+extern LIB_MUTABLE_STRING_API
+void mutable_string_dump(FILE* fp, const MutableString* ms);
+
+extern LIB_MUTABLE_STRING_API
+void mutable_string_free(MutableString* ms);
+
+/*
+ * @brief Transform C escape sequences to their character representation
+ * 
+ * This function returns a new instance of MutableString.
+ *
+ * @param ms MutableString instance
+ * @return NULL or MutableString instance
+ */
+LIB_MUTABLE_STRING_API
+MutableString* mutable_string_escape(const MutableString* ms);
 
 #ifdef __cplusplus
 }

@@ -12,7 +12,8 @@ static void test_null_arg(void)
 	expect(ms != NULL);
 	expect(ms->length == 0);
 	expect(ms->buffer == NULL);
-	free(ms);
+	mutable_string_dump(stdout, ms);
+	mutable_string_free(ms);
 }
 
 static void test_non_null_arg(void)
@@ -25,8 +26,9 @@ static void test_non_null_arg(void)
 	expect(str_equal("Ryan", ms->buffer));
 	expect(ms->buffer[ms->length] == '\0');
 
-	free(ms->buffer);
-	free(ms);
+	mutable_string_dump(stdout, ms);
+
+	mutable_string_free(ms);
 }
 
 int main(void)

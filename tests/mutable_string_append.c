@@ -28,21 +28,6 @@ static void test_mutable_string_append(void)
 	expect(str_equal("Ryan McCullagh123456", ms->buffer));
 	expect(ms->buffer[ms->length] == '\0');
 
-	mutable_string_append(ms, NULL);
-	
-	expect(ms->length == 20);
-	expect(ms->capacity == 40);
-	expect(str_equal("Ryan McCullagh123456", ms->buffer));
-	expect(ms->buffer[ms->length] == '\0');
-
-	
-	mutable_string_append(NULL, NULL);
-	
-	expect(ms->length == 20);
-	expect(ms->capacity == 40);
-	expect(str_equal("Ryan McCullagh123456", ms->buffer));
-	expect(ms->buffer[ms->length] == '\0');
-	
 	free(ms->buffer);
 	free(ms);
 }

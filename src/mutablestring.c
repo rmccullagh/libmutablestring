@@ -19,6 +19,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
+#include <assert.h>
 #include <configure.h>
 #include <mutablestring.h>
 
@@ -48,10 +49,8 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 
 	size_t old_len;
 	old_len = ms->length;
-	size_t i;
-        i = 0;
 	ms->length = len + old_len;
-
+	
 	if(ms->length >= ms->capacity) 
 	{
 		if(ms->buffer == NULL) 
@@ -69,14 +68,11 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 				ms->buffer = realloc(ms->buffer, ms->capacity);
 				if(ms->buffer == NULL)
 					return;
-
-				
 			}
 		}
 	}
 	else
 	{
-
 		if(ms->buffer == NULL) 
 		{
 			ms->buffer = malloc(ms->capacity);
@@ -86,14 +82,7 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 
 	}
 
-
-	while(i < len)
-	{
-		ms->buffer[old_len++] = *begin;
-		begin++;
-		i++;
-	}
-
+	memcpy(ms->buffer + old_len, begin, len);
 	ms->buffer[ms->length] = '\0';
 
 }
@@ -161,6 +150,10 @@ LIB_MUTABLE_STRING_API MutableString* mutable_string_new(const char* s)
 LIB_MUTABLE_STRING_API MutableString* mutable_string_new_str_len(const char* s,
 		size_t len)
 {
+
+	if(s == NULL)
+		return NULL;
+
 	MutableString* ms = mutable_string_sized_init(len + 1);
 
 	mutable_string_append_str_len(ms, s, len);
@@ -174,7 +167,7 @@ void mutable_string_append(MutableString* ms, const char* s)
 {
 	if(ms == NULL || s == NULL)
 		return;
-	
+
 	size_t len;
 	len = strlen(s);
 
@@ -187,7 +180,7 @@ void mutable_string_append_c(MutableString* ms, char s)
 {
 	if(ms == NULL)
 		return;
-	
+
 	char buf[2];
 	buf[0] = s;
 	buf[1] = '\0';
@@ -202,3 +195,84 @@ const char* mutable_string_lib_version(void)
 	return LIB_MUTABLE_STRING_VERSION_STRING;
 
 }
+
+LIB_MUTABLE_STRING_API
+void mutable_string_dump(FILE* fp, const MutableString* ms)
+{
+	if(fp == NULL || ms == NULL)
+		return;
+
+	fprintf(fp, "MutableString(%p) {\n", ((void*)ms));
+	fprintf(fp, " length(%p): %zu", ((void*)&ms->length), ms->length);
+	fprintf(fp, "\n");
+	fprintf(fp, " capacity(%p): %zu", ((void*)&ms->capacity), ms->capacity);
+	fprintf(fp, "\n");
+	if(ms->buffer == NULL)
+		fprintf(fp, " buffer(null): (null)");
+	else
+		fprintf(fp, " buffer(%p): \"%s\"", ((void *)(&ms->buffer[0])), ms->buffer);
+	fprintf(fp, "\n}\n");
+	fflush(fp);
+}
+
+LIB_MUTABLE_STRING_API
+void mutable_string_free(MutableString* ms)
+{
+	if(ms == NULL)
+		return;
+	if(ms->buffer != NULL)
+		free(ms->buffer);
+	free(ms);
+}
+
+
+LIB_MUTABLE_STRING_API
+MutableString* mutable_string_escape(const MutableString* ms)
+{
+	if(ms == NULL)
+		return NULL;
+	if(ms->buffer == NULL)
+		return NULL;
+	/* not implemented yet */
+	return NULL;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
