@@ -143,7 +143,8 @@ void mutable_string_free(MutableString* ms);
 /*
  * @brief Transform C escape sequences to their character representation
  * 
- * This function returns a new instance of MutableString.
+ * This function returns a new instance of MutableString or NULL if memory allocation
+ * fails.
  *
  * @param ms MutableString instance
  * @return NULL or MutableString instance

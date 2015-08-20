@@ -37,3 +37,5 @@ mutable_string_new
 mutable_string_new_len
 mutable_string_new_str_len
 doc/doxy
+mutable_string_compare
+mutable_string_escape

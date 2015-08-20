@@ -233,46 +233,34 @@ MutableString* mutable_string_escape(const MutableString* ms)
 		return NULL;
 	if(ms->buffer == NULL)
 		return NULL;
-	/* not implemented yet */
-	return NULL;	
+
+	MutableString* out;
+	size_t i;
+	char c;
+
+	out = mutable_string_new_len(ms->length + 1);
+	
+	if(out == NULL)
+		return NULL;
+
+	for(i = 0; i < ms->length; i++) {
+		c = ms->buffer[i];
+		if(c == '\n') {
+			mutable_string_append(out, "\\n");
+		} else if(c == '\t') {
+			mutable_string_append(out, "\\t");
+		} else if(c == '\b') {
+			mutable_string_append(out, "\\b");
+		} else if(c == '\r') {
+			mutable_string_append(out, "\\r");
+		} else if(c == '\f') {
+			mutable_string_append(out, "\\f");
+		} else if(c == '"') {
+			mutable_string_append(out, "\"");
+		} else {
+			mutable_string_append_c(out, c);
+		}
+	}
+
+	return out;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
