@@ -55,6 +55,11 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 	{
 		if(ms->buffer == NULL) 
 		{
+			if(ms->capacity *2 < ms->capacity) {
+				ms->length = old_len;
+				return;
+			}
+
 			ms->capacity *= 2;
 			ms->buffer = malloc(ms->capacity);
 			if(ms->buffer == NULL)
@@ -64,6 +69,11 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 		{
 			while(ms->length >= ms->capacity)
 			{
+				if(ms->capacity * 2 < ms->capacity) {
+					ms->length = old_len;
+					return;
+				}
+				
 				ms->capacity *= 2;
 				ms->buffer = realloc(ms->buffer, ms->capacity);
 				if(ms->buffer == NULL)

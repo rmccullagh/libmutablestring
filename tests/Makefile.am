@@ -13,7 +13,6 @@ noinst_PROGRAMS = \
 	mutable_string_new_str_len 	\
 	mutable_string_new_len		\
 	mutable_string_escape		\
-	mutable_string_compare		\
 	$(NULL)
 
 check_PROGRAMS = \
@@ -23,7 +22,6 @@ check_PROGRAMS = \
 	mutable_string_new_str_len 	\
 	mutable_string_new_len		\
 	mutable_string_escape		\
-	mutable_string_compare		\
 	$(NULL)
 
 TESTS = $(check_PROGRAMS)
