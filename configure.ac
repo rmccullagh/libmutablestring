@@ -1,4 +1,4 @@
-AC_INIT([libmutablestring], [1.0.0], [bug-automake@whiletrueconsulting.com])
+AC_INIT([libmutablestring], [1.0.1], [bug-automake@whiletrueconsulting.com])
 AM_INIT_AUTOMAKE([-Wno-portability])
 LT_INIT([disable-static])
 AC_SUBST([LIBTOOL_DEPS])
@@ -7,7 +7,7 @@ AC_PROG_CC_C99
 AC_PROG_INSTALL
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([src/config.h])
-LIB_MUTABLE_STRING_VERSION=1:0:0
+LIB_MUTABLE_STRING_VERSION=1:0:1
 AC_SUBST(LIB_MUTABLE_STRING_VERSION)
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
