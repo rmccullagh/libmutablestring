@@ -159,7 +159,7 @@ void mutable_string_free(MutableString* ms);
  * @param ms MutableString instance
  * @return NULL or MutableString instance
  */
-LIB_MUTABLE_STRING_API
+extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_escape(const MutableString* ms);
 
 #ifdef __cplusplus
