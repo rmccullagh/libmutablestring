@@ -1,26 +1,21 @@
 /**
  * @file mutablestring.h
- * @brief Function prototypes for the public API
- *
- * Public API functions
- */
-/*
- *  Copyright (c) 2015 Ryan McCullagh <me@ryanmccullagh.com>
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  * @author Ryan McCullagh
+ * @brief  Public API functions
+ * 
+ * @section LICENSE
+ *
+ * Copyright (c) 2015 Ryan McCullagh <me@ryanmccullagh.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  */
 
 #ifndef __LIB_MUTABLE_STRING_INCLUDED_H
@@ -88,25 +83,27 @@ extern "C" {
 #endif
 
 /**
- * Create a new MutableString instance with an allocated buffer of n bytes.
+ * @brief Create a new MutableString instance with an allocated buffer of n bytes.
  *
- * @brief Create a new instance of MutableString with a capacity
+ * Create a new instance of MutableString with a capacity
  * of n. The buffer will be allocated to the size of n + 1 where each
- * byte in buffer will be a NULL byte.
+ * byte in the buffer will initially be a NULL byte.
  *
- * @param n Number of bytes to allocat
+ * @param n Number of bytes to allocate
  * @return Pointer to a MutableString type, or NULL
  */
 extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_new_len(size_t n);
 
 /**
- * @brief Create a new instance of MutableString. If s is not NULL,
+ * @brief Create a new mutable string with an optional initial buffer value
+ *
+ * Create a new instance of MutableString. If s is not NULL,
  * then the buffer will be allocated to the length of s + 1 and 
  * length set to the length of s, not including the NULL byte, and
  * capacity set to the length of s + 1 If s is NULL, capacity will 
  * be set to #LIB_MUTABLE_STRING_DEFAULT_SIZE and length set to 0, and 
- * the buffer will not be allocated, and set to NULL
+ * the buffer will not be allocated, and the buffer will be set to NULL
  *
  * @param s A NULL terminated string, or NULL
  * @return Pointer to a MutableString type, or NULL if memory allocation failed
@@ -117,14 +114,27 @@ MutableString* mutable_string_new(const char* s);
 /**
  * @brief Create a new string with the length supplied
  *
- * This function creates a new instance of MutableString
+ * This function creates a new instance of MutableString. It will read len bytes
+ * starting from s. It's the callers responsibility to ensure that s can have
+ * len bytes read from it.
  *
  * @param s a pointer to a char* buffer
  * @param len Total number of bytes to read from s
+ * @return pointer to a MutableString type, or NULL if memory allocation failed
  */
 extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_new_str_len(const char* s, size_t len);
 
+/**
+ * @brief append a NULL termianted string to the end of the current allocated buffer
+ *
+ * Append the contents of s where s is terminated by a NULL byte to the end of the currently
+ * allocated buffer
+ *
+ * @param ms A pointer to a MutableString type
+ * @param s A NULL terminated string
+ * @return a pointer to a MutableString type, or NULL if memory allocation failed
+ */
 extern LIB_MUTABLE_STRING_API
 void mutable_string_append(MutableString* ms, const char* s);
 
