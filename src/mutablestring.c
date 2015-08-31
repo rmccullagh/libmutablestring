@@ -39,7 +39,6 @@ static inline MutableString* mutable_string_sized_init(size_t capacity)
 	ms->buffer = NULL;
 
 	return ms;
-	
 }
 
 static inline void mutable_string_append_str_len(MutableString* ms, const char* begin, size_t len)
@@ -55,7 +54,8 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 	{
 		if(ms->buffer == NULL) 
 		{
-			if(ms->capacity *2 < ms->capacity) {
+			if(ms->capacity *2 < ms->capacity) 
+			{
 				ms->length = old_len;
 				return;
 			}
@@ -69,7 +69,8 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 		{
 			while(ms->length >= ms->capacity)
 			{
-				if(ms->capacity * 2 < ms->capacity) {
+				if(ms->capacity * 2 < ms->capacity) 
+				{
 					ms->length = old_len;
 					return;
 				}
@@ -89,12 +90,10 @@ static inline void mutable_string_append_str_len(MutableString* ms, const char* 
 			if(ms->buffer == NULL)
 				return;
 		}
-
 	}
-
+	
 	memcpy(ms->buffer + old_len, begin, len);
 	ms->buffer[ms->length] = '\0';
-
 }
 
 static inline void mutable_string_clear_buffer(MutableString* ms)
@@ -119,10 +118,10 @@ static inline void mutable_string_buffer_init(MutableString* ms)
 	ms->buffer = malloc(ms->capacity);
 
 	mutable_string_clear_buffer(ms);
-
 }
 
-LIB_MUTABLE_STRING_API MutableString* mutable_string_new_len(size_t n)
+LIB_MUTABLE_STRING_API 
+MutableString* mutable_string_new_len(size_t n)
 {
 	MutableString* ms;
 
@@ -134,10 +133,10 @@ LIB_MUTABLE_STRING_API MutableString* mutable_string_new_len(size_t n)
 	mutable_string_buffer_init(ms);
 
 	return ms;
-
 }
 
-LIB_MUTABLE_STRING_API MutableString* mutable_string_new(const char* s)
+LIB_MUTABLE_STRING_API 
+MutableString* mutable_string_new(const char* s)
 {
 	MutableString* ms;
 
@@ -157,10 +156,9 @@ LIB_MUTABLE_STRING_API MutableString* mutable_string_new(const char* s)
 	return ms;
 }
 
-LIB_MUTABLE_STRING_API MutableString* mutable_string_new_str_len(const char* s,
-		size_t len)
+LIB_MUTABLE_STRING_API 
+MutableString* mutable_string_new_str_len(const char* s, size_t len)
 {
-
 	if(s == NULL)
 		return NULL;
 
@@ -169,7 +167,6 @@ LIB_MUTABLE_STRING_API MutableString* mutable_string_new_str_len(const char* s,
 	mutable_string_append_str_len(ms, s, len);
 
 	return ms;
-
 }
 
 LIB_MUTABLE_STRING_API
@@ -182,7 +179,6 @@ void mutable_string_append(MutableString* ms, const char* s)
 	len = strlen(s);
 
 	mutable_string_append_str_len(ms, s, len);
-
 }
 
 LIB_MUTABLE_STRING_API
@@ -203,7 +199,6 @@ LIB_MUTABLE_STRING_API
 const char* mutable_string_lib_version(void)
 {
 	return LIB_MUTABLE_STRING_VERSION_STRING;
-
 }
 
 LIB_MUTABLE_STRING_API
