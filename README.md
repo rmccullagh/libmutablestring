@@ -5,10 +5,8 @@ always contains a NULL byte at the end. While it is called string, it
 is actually a byte array storing the length in bytes. It's possible to use 
 it to store NULL bytes, and you'll still get a NULL byte at the end of it.
 
-#What is it?
-
+# What is it?
 Libmutable string provides a data structure called `MutableString`. The library provides useful functions for manipulating and creating strings.
-
 ```c
 typedef struct MutableString {
     size_t length;
@@ -17,8 +15,7 @@ typedef struct MutableString {
 } MutableString;
 ```
 
-#Example
-
+# Example
 ```c
 /**
  * This program creates a string.
@@ -39,3 +36,14 @@ int main(void)
   return 0;
 }
 ```
+
+# Installation
+* git clone [https://github.com/rmccullagh/libmutablestring.git](https://github.com/rmccullagh/libmutablestring.git)
+* cd libmutablestring
+* ./autogen.sh
+* ./configure
+* make
+* make check
+* make install
+
+The default install prefix is `/usr/local` specify your path with `./configure --prefix=$HOME`
