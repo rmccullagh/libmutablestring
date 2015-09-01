@@ -43,7 +43,10 @@ int main(void)
 * ./autogen.sh
 * ./configure
 * make
-* make check
+* make check # This will compile and/or run the unit tests
 * make install
 
 The default install prefix is `/usr/local` specify your path with `./configure --prefix=$HOME`
+
+# Unit Tests
+It's tested. Currently every public function of the library is unit tested. Almost as much time went into to developing the library as time went into testing it. 
