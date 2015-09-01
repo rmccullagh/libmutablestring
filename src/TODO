@@ -1,0 +1,2 @@
+mutable_string_append_str_len
+	- Append a string of length N to a MutableString buffer
