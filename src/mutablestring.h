@@ -22,6 +22,7 @@
 #define __LIB_MUTABLE_STRING_INCLUDED_H
 
 #include <stddef.h>
+#include <stdio.h> /* For FILE */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
