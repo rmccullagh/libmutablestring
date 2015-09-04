@@ -1,2 +1,8 @@
-mutable_string_append_str_len
-	- Append a string of length N to a MutableString buffer
+void mutable_string_append_str_len(MutableString*, char*, size_t)
+	- Append a string of length N to an existing MutableString buffer
+
+void mutable_string_reset(MutableString*)
+	- Set the length to 0, and swap all bytes in the buffer NULL bytes
+
+void mutable_string_copy(MutableString*)
+	- copy the buffer, length, capacity into a new allocation of MutableString
