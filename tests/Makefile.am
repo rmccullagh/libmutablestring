@@ -1,7 +1,5 @@
 LDADD = $(top_builddir)/src/libmutablestring.la
 
-TESTS_ENVIRONMENT=valgrind
-
 noinst_HEADERS = \
 	test_common.h		\
 	$(NULL)
