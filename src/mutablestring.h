@@ -163,6 +163,15 @@ void mutable_string_free(MutableString* ms);
 extern LIB_MUTABLE_STRING_API
 MutableString* mutable_string_escape(const MutableString* ms);
 
+/*
+ * @brief copy the buffer, length, capacity into a new allocation of MutableString
+ *
+ * @param ms MutableString instance
+ * @return NULL or MutableString instance
+ */
+extern LIB_MUTABLE_STRING_API
+MutableString* mutable_string_copy(const MutableString* original);
+
 #ifdef __cplusplus
 }
 #endif

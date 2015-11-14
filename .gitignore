@@ -41,3 +41,4 @@ mutable_string_new_str_len
 doc/doxy
 mutable_string_compare
 mutable_string_escape
+mutable_string_copy

@@ -269,3 +269,30 @@ MutableString* mutable_string_escape(const MutableString* ms)
 
 	return out;
 }
+
+
+LIB_MUTABLE_STRING_API
+MutableString* mutable_string_copy(const MutableString* original)
+{
+
+	MutableString* retval = malloc(sizeof(MutableString));
+	
+	if(!retval)
+		return NULL;
+
+
+	retval->length = original->length;
+	retval->capacity = original->capacity;
+	retval->buffer = malloc(retval->capacity);
+
+	if(!retval->buffer) {
+		free(retval);
+		return NULL;
+	}
+	
+	
+	memcpy(retval->buffer, original->buffer, original->length + 1);
+
+
+	return retval;
+}
